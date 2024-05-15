@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Milk Tracker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Milk Tracker Application! This React.js project enables users to monitor milking sessions conveniently while enjoying background music. Whether you're managing a small farm or simply tracking personal milk production, this app offers a user-friendly interface to streamline the process.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+Follow these steps to set up the Milk Tracker App on your local machine:
+
+### Prerequisites
+
+Make sure you have Node.js installed on your system. You can download it [here](https://nodejs.org/en/download/).
+
+### Clone the Repository
+
+Use the following command to clone the project to your local machine:
+
+```bash
+git clone https://github.com/ersouravbansal/milk-tracker.git
+```
+
+### Install Dependencies
+
+Navigate to the project directory and install the necessary dependencies:
+
+```bash
+cd milk-tracker
+npm install
+```
+
+## Usage
+
+Once the project is set up, you can run it locally using the following commands:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This command launches the app in development mode. Open [http://localhost:3000](http://localhost:3000) in your browser to access the app. The page will automatically reload if you make any changes to the source code.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Use this command to build the app for production. It compiles the source code and creates an optimized version of the app in the `build` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Home Page
 
-### `npm run eject`
+- Start, pause, resume, and stop milking sessions.
+- Play background music during milking sessions.
+- Record the quantity of milk produced at the end of each session.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Milk History Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- View a detailed history of milking sessions in a tabular format.
+- Access details such as date, start time, end time, total time, and milk quantity for each session.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This README provides a comprehensive guide to getting started with the Milk Tracker App and outlines its features and functionalities. If you have any questions or need further assistance, don't hesitate to reach out!
