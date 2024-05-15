@@ -36,10 +36,12 @@ const HomePage = () => {
     audioRef.current = new Audio(selectedAudio.src);
     audioRef.current.currentTime = 0;
     audioRef.current.loop = true;
+  }, [selectedAudio]);
+  useEffect(() => {
     if (isMilking && !isPaused) {
       audioRef.current.play();
     }
-  }, [selectedAudio]);
+  }, [isMilking, isPaused, selectedAudio]);
 
   useEffect(() => {
     if (isMilking && !isPaused) {
@@ -56,7 +58,9 @@ const HomePage = () => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-    return `${hours.toString().padStart(2, "0")}h: ${minutes.toString().padStart(2, "0")}m: ${seconds.toString().padStart(2, "0")}s`;
+    return `${hours.toString().padStart(2, "0")}h: ${minutes
+      .toString()
+      .padStart(2, "0")}m: ${seconds.toString().padStart(2, "0")}s`;
   };
 
   const controlMilking = () => {
@@ -152,7 +156,7 @@ const HomePage = () => {
             Stop
           </button>
           <div className="milking-timer-container">
-            <p className="milking-timer">{formatTime(milkingDuration)} seconds</p>
+            <p className="milking-timer">{formatTime(milkingDuration)}</p>
           </div>
         </div>
       )}
