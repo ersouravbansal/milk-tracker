@@ -10,6 +10,10 @@ Follow these steps to set up the Milk Tracker App on your local machine:
 
 Make sure you have Node.js installed on your system. You can download it [here](https://nodejs.org/en/download/).
 
+Use npm version 9.5.1
+
+And node version v18.16.1
+
 ### Clone the Repository
 
 Use the following command to clone the project to your local machine:
