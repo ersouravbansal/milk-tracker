@@ -72,7 +72,7 @@ const HomePage = () => {
       setIsMilking(true);
       setMilkingDuration(0);
       setMilkingStarted(true);
-      setStartTimes(new Date)
+      setStartTimes(new Date())
       audioRef.current.play();
     } else {
       if (isPaused) {
