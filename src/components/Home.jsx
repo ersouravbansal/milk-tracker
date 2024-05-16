@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../styles/home.css";
+import Popup from "./Popup";
+import ProgressBar from "./ProgressBar";
 import audio1 from "../audio/scottBuckleyMoonlight.mp3";
 import audio2 from "../audio/AfterTheRain-InspiringAtmosphericMusic.mp3";
 import audio3 from "../audio/MoonWaltz.mp3";
 import audio4 from "../audio/sbadriftamonginfinitestars.mp3";
-import ProgressBar from "./ProgressBar";
 
 const audioFiles = [
   { name: "Audio1", src: audio1 },
@@ -19,8 +20,9 @@ const HomePage = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedAudio, setSelectedAudio] = useState(audioFiles[0]);
   const [milkingStarted, setMilkingStarted] = useState(false);
-  const [pausedStartTime, setPausedStartTime] = useState(null);
-  const [pausedDuration, setPausedDuration] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [milkingStopped, setMilkingStopped] = useState(false);
+  const [startTimes, setStartTimes] = useState(null);
   const audioRef = useRef(new Audio());
   const timerRef = useRef(null);
 
@@ -37,6 +39,7 @@ const HomePage = () => {
     audioRef.current.currentTime = 0;
     audioRef.current.loop = true;
   }, [selectedAudio]);
+
   useEffect(() => {
     if (isMilking && !isPaused) {
       audioRef.current.play();
@@ -44,7 +47,7 @@ const HomePage = () => {
   }, [isMilking, isPaused, selectedAudio]);
 
   useEffect(() => {
-    if (isMilking && !isPaused) {
+    if (isMilking && !isPaused && !milkingStopped) {
       timerRef.current = setInterval(() => {
         setMilkingDuration((prevDuration) => prevDuration + 1);
       }, 1000);
@@ -53,7 +56,8 @@ const HomePage = () => {
     }
 
     return () => clearInterval(timerRef.current);
-  }, [isPaused, isMilking]);
+  }, [isPaused, isMilking, milkingStopped]);
+
   const formatTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -68,34 +72,29 @@ const HomePage = () => {
       setIsMilking(true);
       setMilkingDuration(0);
       setMilkingStarted(true);
+      setStartTimes(new Date)
       audioRef.current.play();
     } else {
       if (isPaused) {
         setIsPaused(false);
         audioRef.current.play();
-        if (pausedStartTime) {
-          const currentTime = new Date();
-          const pauseDuration = (currentTime - pausedStartTime) / 1000;
-          setPausedDuration(
-            (prevPausedDuration) => prevPausedDuration + pauseDuration
-          );
-        }
-        setPausedStartTime(null);
       } else {
         setIsPaused(true);
         audioRef.current.pause();
-        setPausedStartTime(new Date());
       }
     }
   };
 
   const stopMilking = () => {
-    const milkQuantity = prompt("Enter the quantity of milk (in liters):");
+    setMilkingStopped(true);
+    audioRef.current.pause();
+    setShowPopup(true);
+  };
+
+  const handlePopupSubmit = (milkQuantity) => {
     const endTime = new Date();
     const totalMilkingTime = milkingDuration;
-    const SessionTime = milkingDuration + pausedDuration;
-    const startTime = new Date(endTime - SessionTime * 1000);
-
+    const startTime = startTimes;
     const milkingData = {
       date: new Date().toISOString(),
       startTime: startTime,
@@ -116,7 +115,6 @@ const HomePage = () => {
     setIsMilking(false);
     setIsPaused(false);
     setMilkingStarted(false);
-    setPausedDuration(0);
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   };
@@ -166,6 +164,11 @@ const HomePage = () => {
           duration={audioRef.current.duration}
         />
       )}
+      <Popup
+        showPopup={showPopup}
+        setShowPopup={setShowPopup}
+        onSubmit={handlePopupSubmit}
+      />
     </div>
   );
 };
